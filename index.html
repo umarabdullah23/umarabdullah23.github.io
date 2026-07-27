@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Umar Abdullah — Links</title>
+  <meta name="description" content="A hub for all of Umar Abdullah's apps, projects and websites." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔗</text></svg>" />
+  <style>
+    :root {
+      --bg: #0b0f1a;
+      --bg-soft: #121826;
+      --card: #161d2e;
+      --card-hover: #1d2740;
+      --border: #232d45;
+      --text: #e8ecf5;
+      --muted: #8a95ad;
+      --accent: #6ea8fe;
+      --accent-2: #a78bfa;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 50% -10%, #1a2138 0%, var(--bg) 55%);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 64px 20px 80px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap { max-width: 720px; margin: 0 auto; }
+    header { text-align: center; margin-bottom: 44px; }
+    .avatar {
+      width: 84px; height: 84px; border-radius: 50%;
+      margin: 0 auto 18px;
+      display: grid; place-items: center;
+      font-size: 34px; font-weight: 700;
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 8px 30px rgba(110,168,254,.35);
+    }
+    h1 { font-size: 26px; letter-spacing: -.02em; }
+    .tagline { color: var(--muted); margin-top: 8px; font-size: 15px; }
+
+    .grid { display: grid; gap: 14px; margin-top: 8px; }
+    .link {
+      display: flex; align-items: center; gap: 16px;
+      padding: 18px 20px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      text-decoration: none;
+      color: var(--text);
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .link:hover {
+      background: var(--card-hover);
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .link .emoji {
+      font-size: 24px;
+      width: 44px; height: 44px;
+      display: grid; place-items: center;
+      background: var(--bg-soft);
+      border-radius: 12px;
+      flex-shrink: 0;
+    }
+    .link .meta { flex: 1; min-width: 0; }
+    .link .title { font-size: 16px; font-weight: 600; }
+    .link .desc { color: var(--muted); font-size: 13px; margin-top: 3px; }
+    .link .arrow { color: var(--muted); transition: transform .15s ease, color .15s ease; }
+    .link:hover .arrow { color: var(--accent); transform: translateX(3px); }
+
+    .section-label {
+      text-transform: uppercase; letter-spacing: .12em;
+      font-size: 11px; color: var(--muted);
+      margin: 30px 4px 4px;
+    }
+
+    footer { text-align: center; color: var(--muted); font-size: 13px; margin-top: 48px; }
+    footer a { color: var(--accent); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="avatar">UA</div>
+      <h1>Umar Abdullah</h1>
+      <p class="tagline">Senior Full Stack Developer — my apps &amp; projects</p>
+    </header>
+
+    <main id="links" class="grid"></main>
+
+    <footer>
+      Built with 🔗 on GitHub Pages · <a href="https://github.com/umarabdullah23">github.com/umarabdullah23</a>
+    </footer>
+  </div>
+
+  <script>
+    /* ─────────────────────────────────────────────────────────────
+       EDIT HERE — add / change / reorder your links.
+       Each entry: { emoji, title, desc, url }
+       Use { section: "Name" } to start a new group.
+       ───────────────────────────────────────────────────────────── */
+    const LINKS = [
+      { section: "Featured" },
+      {
+        emoji: "📄",
+        title: "My Resume",
+        desc: "Latest CV / portfolio",
+        url: "#" // TODO: replace with your resume URL
+      },
+      {
+        emoji: "📈",
+        title: "Stocks Website",
+        desc: "Stock tracking app",
+        url: "#" // TODO: replace with your stocks site URL
+      },
+
+      { section: "More" },
+      {
+        emoji: "💼",
+        title: "GitHub",
+        desc: "Code & repositories",
+        url: "https://github.com/umarabdullah23"
+      },
+      // { emoji: "🚀", title: "Project Name", desc: "Short description", url: "https://..." },
+    ];
+
+    const container = document.getElementById("links");
+    for (const item of LINKS) {
+      if (item.section) {
+        const label = document.createElement("div");
+        label.className = "section-label";
+        label.textContent = item.section;
+        container.appendChild(label);
+        continue;
+      }
+      const a = document.createElement("a");
+      a.className = "link";
+      a.href = item.url;
+      if (item.url && item.url !== "#" && !item.url.startsWith("#")) {
+        a.target = "_blank";
+        a.rel = "noopener";
+      }
+      a.innerHTML = `
+        <span class="emoji">${item.emoji}</span>
+        <span class="meta">
+          <span class="title">${item.title}</span>
+          <span class="desc">${item.desc}</span>
+        </span>
+        <span class="arrow">→</span>`;
+      container.appendChild(a);
+    }
+  </script>
+</body>
+</html>
